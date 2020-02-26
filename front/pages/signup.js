@@ -6,14 +6,15 @@ import { Form, Input, Checkbox, Button } from 'antd';
 //   return <Input name="user-id" value={value} required onChange={onChange} />;
 // });
 
+export const useInput = (initValue = null) => {
+  const [value, setValue] = useState(initValue);
+  const handler = useCallback(e => {
+    setValue(e.target.value);
+  }, []);
+  return [value, handler];
+};
+
 const Signup = () => {
-  const useInput = (initValue = null) => {
-    const [value, setValue] = useState(initValue);
-    const handler = useCallback(e => {
-      setValue(e.target.value);
-    }, []);
-    return [value, handler];
-  };
   const [id, onChangeId] = useInput('');
   const [nick, onChangeNick] = useInput('');
   const [password, onChangePassword] = useInput('');
