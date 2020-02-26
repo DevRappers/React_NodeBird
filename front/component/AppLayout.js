@@ -1,6 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import { Button, Input, Menu } from 'antd';
+import PropTypes from 'prop-types';
+import { Avatar, Button, Card, Col, Input, Menu, Row } from 'antd';
+
+const dummy = {
+  nickname: '이재준',
+  Post: [],
+  Followings: [],
+  Followers: [],
+};
 
 const AppLayout = ({ children }) => {
   return (
@@ -25,9 +33,44 @@ const AppLayout = ({ children }) => {
           <Button>회원가입</Button>
         </a>
       </Link>
-      {children}
+      <Row>
+        <Col xs={24} md={6}>
+          <Card
+            actions={[
+              <div key="twit">
+                test
+                <br />
+                {dummy.Post.length}
+              </div>,
+              <div key="following">
+                팔로잉
+                <br />
+                {dummy.Followings.length}
+              </div>,
+              <div key="follower">
+                팔로워
+                <br />
+                {dummy.Followers.length}
+              </div>,
+            ]}
+          >
+            <Card.Meta
+              avatar={<Avatar>{dummy.nickname[0]}</Avatar>}
+              title={dummy.nickname}
+            />
+          </Card>
+        </Col>
+        <Col xs={24} md={12}>
+          {children}
+        </Col>
+        <Col xs={24} md={6}></Col>
+      </Row>
     </div>
   );
+};
+
+AppLayout.propTypes = {
+  children: PropTypes.node,
 };
 
 export default AppLayout;

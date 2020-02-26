@@ -2,9 +2,9 @@ import React, { useState, useCallback, memo } from 'react';
 import { Form, Input, Checkbox, Button } from 'antd';
 
 // 최적화를 위한 컴포넌트 분리(너무 분리할경우 더욱 비효율적임)
-const TextInput = memo(({ value, onChange }) => {
-  return <Input name="user-id" value={value} required onChange={onChange} />;
-});
+// const TextInput = memo(({ value, onChange }) => {
+//   return <Input name="user-id" value={value} required onChange={onChange} />;
+// });
 
 const Signup = () => {
   const useInput = (initValue = null) => {
