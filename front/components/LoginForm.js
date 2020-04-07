@@ -1,4 +1,4 @@
-import React, { useState, useCallback} from "react";
+import React, { useState, useCallback } from "react";
 import { Button, Input } from "antd";
 import Link from "next/link";
 import { useInput } from "../pages/signup";
@@ -7,16 +7,19 @@ const LoginForm = () => {
   const [id, onChangeId] = useInput("");
   const [password, onChangePassword] = useInput("");
 
-  const onSubmitForm = useCallback((e) => {
-    e.preventDefault();
-    console.log({
-      id,
-      password
-    });
-  },[id, password]);
+  const onSubmitForm = useCallback(
+    e => {
+      e.preventDefault();
+      console.log({
+        id,
+        password
+      });
+    },
+    [id, password]
+  );
 
   return (
-    <form onSubmit={onSubmitForm}>
+    <form onSubmit={onSubmitForm} style={{ padding: 10 }}>
       <div>
         <label htmlFor="user-id">아이디</label>
         <Input name="user-id" value={id} onChange={onChangeId} required />
