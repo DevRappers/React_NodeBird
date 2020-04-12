@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import withRedux from "next-redux-wrapper";
 import { Provider } from "react-redux";
 import reducer from "../reducers";
-import { createStore } from "redux";
+import { createStore, compose, applyMiddleware } from "redux";
 import AppLayout from "../components/AppLayout";
 
 const NodeBird = ({ Component, store }) => {
@@ -30,7 +30,15 @@ NodeBird.propTypes = {
 };
 
 export default withRedux((initialState, options) => {
-  const store = createStore(reducer, initialState);
+  const middlewares = [];
+  // compose : middleware끼리 합성을 할때 사용함. applyMiddleware : 여기에 적힌 미들웨어를 적용하는 기능
+  const enhancer = compose(
+    applyMiddleware(...middlewares),
+    !options.isServer && window.__REDUX_DEVTOOLS_EXTENSION__ !== "undefined"
+      ? window.__REDUX_DEVTOOLS_EXTENSION__()
+      : f => f
+  );
+  const store = createStore(reducer, initialState, enhancer);
 
   // store customizing
   return store;
