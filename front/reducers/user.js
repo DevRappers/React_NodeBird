@@ -1,19 +1,19 @@
 const initialState = {
   isLoggedIn: false,
-  user: {}
+  user: null
 };
 
-const LOG_IN = "LOG_IN"; // ActionName
-const LOG_OUT = "LOG_OUT";
+export const LOG_IN = "LOG_IN"; // ActionName
+export const LOG_OUT = "LOG_OUT";
 
-const loginAction = {
+export const loginAction = {
   type: LOG_IN,
   data: {
     nickname: "DevRappers"
   }
 };
 
-const logoutAction = {
+export const logoutAction = {
   type: LOG_OUT
 };
 
